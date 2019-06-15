@@ -61,26 +61,6 @@ export const mockupAPI = {
       creation_date: null,
       completed: false,
       deleted: false
-    },
-    {
-      id: 7,
-      title: "Finish This PWA",
-      description: "Make It Look Awesome",
-      scheduled_time: 11,
-      scheduled_period: "AM",
-      creation_date: null,
-      completed: false,
-      deleted: false
-    },
-    {
-      id: 8,
-      title: "Finish This PWA",
-      description: "Make It Look Awesome",
-      scheduled_time: 11,
-      scheduled_period: "AM",
-      creation_date: null,
-      completed: false,
-      deleted: false
     }
   ],
 
