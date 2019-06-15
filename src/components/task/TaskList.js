@@ -9,6 +9,8 @@ export const TaskList = props => {
   // const [tasks, setTasks] = React.useState([{}]);
   const tasks = useStore(store => store.tasks);
   const addTask = useActions(action => action.addTask);
+  const completeTask = useActions(action => action.completeTask);
+  const deleteTask = useActions(action => action.deleteTask);
 
   useEffect(() => {
     const getData = async () => {
@@ -18,15 +20,11 @@ export const TaskList = props => {
   }, [addTask]);
 
   const handleComplete = id => {
-    const taskCompleted = tasks.filter(el => el.id !== id);
-    taskCompleted.completed = true;
-    addTask(taskCompleted);
+    completeTask(id);
   };
 
   const handleDelete = id => {
-    const deltedTask = tasks.filter(el => el.id !== id);
-    deltedTask.deleted = true;
-    addTask(deltedTask);
+    deleteTask(id);
   };
 
   return (
@@ -34,8 +32,7 @@ export const TaskList = props => {
       <Box overflow="auto">
         {tasks
           .filter(el => {
-            if ((el.completed === false) | (el.deleted === true)) {
-              console.log(el.completed);
+            if (el.completed !== true || el.completed !== true) {
               return el;
             }
           })
