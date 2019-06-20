@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { Box, Button, Form, FormField, Layer, Text } from "grommet";
+import { Box, Button, Form, FormField, Heading, Layer, Text } from "grommet";
 import { Tasks } from "grommet-icons";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../../utils/routes";
 import { withFirebase } from "../../firebase/context";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
+import { useStoreState, useStoreActions } from "easy-peasy";
+import withResponsiveContext from "../hoc/withResponsiveContext";
 
 export const Header = props => {
   const [showModal, setShowModal] = React.useState(false);
@@ -14,11 +16,11 @@ export const Header = props => {
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
 
+  //TODO: why is this async?  BECAUSE I USE AWAIT IN THE FUNCTION, MORON
   const handleOnSubmit = async event => {
     event.preventDefault();
     try {
       const singedUser = await props.firebase.doSignInWithEmailAndPassword(email, password);
-      console.log(singedUser);
       setEmail("");
       setPassword("");
       setShowModal(false);
@@ -30,6 +32,8 @@ export const Header = props => {
     }
   };
 
+  console.log(props.size);
+
   return (
     <>
       <Box direction="row" justify="between" align="center">
@@ -37,7 +41,9 @@ export const Header = props => {
           <Link to={ROUTES.LANDING}>
             <Tasks size="large" color="black" />
           </Link>
-          <h1 style={{ margin: "2rem" }}>ToDo YourSelf</h1>
+          <Heading level={props.size === "medium" ? "1" : "4"} style={{ margin: "2rem" }}>
+            ToDo YourSelf
+          </Heading>
         </Box>
         <Box direction="row" align="center">
           <Link to={ROUTES.SIGN_UP}>
@@ -47,10 +53,11 @@ export const Header = props => {
         </Box>
       </Box>
 
-      {/* HANDLING SIGN IN FORM */}
+      {/* TODO: I can move all of the things into its seperate component
+          HANDLING SIGN IN FORM */}
       {showModal && (
-        <Layer>
-          <Box margin="medium">
+        <Layer position="center" responsive={false}>
+          <Box margin="medium" wrap={true}>
             <Form onSubmit={handleOnSubmit}>
               <FormField
                 name="email"
@@ -80,5 +87,13 @@ export const Header = props => {
     </>
   );
 };
+
+//TODO: refactore the way components are wrapped via HOC
+
+export const HeaderWrapped = compose(
+  withRouter,
+  withFirebase,
+  withResponsiveContext
+)(Header);
 
 export default Header;

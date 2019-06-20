@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { Grommet, grommet } from "grommet";
+import { Grommet, grommet, ResponsiveContext } from "grommet";
 import { BrowserRouter } from "react-router-dom";
 import { FirebaseContext, Firebase } from "./firebase/index";
 import * as serviceWorker from "./serviceWorker";

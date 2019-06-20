@@ -1,16 +1,25 @@
 import React from "react";
-import { Box } from "grommet";
+import { Box, Anchor, Text } from "grommet";
 
 export const Footer = props => (
-  <Box direction="row" justify="center" align="center">
-    <p style={{ fontSize: "12px" }}>
-      Hosted with
-      <span role="img" aria-label="heart">
-        ❤️
-      </span>
-      on GitHub, &copy; Andrea Bredice, 2019
-    </p>
-  </Box>
+  <>
+    <Box>
+      <Box direction="row" align="center" justify="center">
+        <Text size="small">
+          Made with
+          <span role="img" aria-label="heart">
+            ❤️
+          </span>
+          thanks to <Anchor label="Grommet" /> &copy;
+        </Text>
+      </Box>
+      <Box direction="row">
+        <Text size="small">
+          Andrea Bredice, 2019 &copy; find me on <Anchor label="andreabredice.com" />
+        </Text>
+      </Box>
+    </Box>
+  </>
 );
 
 export default Footer;

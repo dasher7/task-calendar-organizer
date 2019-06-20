@@ -1,10 +1,8 @@
 import React from "react";
-import { Box, Calendar } from "grommet";
+import { Calendar } from "grommet";
 
-export const CalendarWidget = props => (
-  <Box>
-    <Calendar size="medium" date={new Date().toISOString()} />
-  </Box>
-);
+//TODO: dimensions are no good, find a better a to structure it
+
+export const CalendarWidget = props => <Calendar size="medium" date={new Date().toISOString()} />;
 
 export default CalendarWidget;

@@ -1,24 +1,28 @@
 import React from "react";
-import { Box, Image } from "grommet";
+import { Box, Heading, Image, Paragraph } from "grommet";
+import Footer from "./Footer";
 
 export const LandingContent = props => (
   <>
-    <h2>A Minimalistic Progressive Web App To Easily Manage Your Life</h2>
-    <Box direction="row" align="center" justify="center" height="large">
+    <Heading level="2">A Minimalistic Progressive Web App To Easily Manage Your Life</Heading>
+    <Box direction="row" align="center" justify="center" height="large" wrap={true}>
       <Box justify="start" margin="medium" align="start">
-        <div style={{ fontSize: "22px" }}>
-          <h3>The Power Of Keep It Simple</h3>
+        <Box margin={{ left: "small" }}>
+          <Heading level="3">The Power Of Keep It Simple</Heading>
           <ul style={{ lineHeight: "2rem" }}>
-            <li>Manage Your Daily Tasks With No Strees</li>
-            <li>Copy Whatever You Want In Your Personal Clipboard</li>
-            <li>Calculate Very Complex Sum and Convert Your Huge Amount Of Bitcoin</li>
-            <li>Manage Your Money Avoiding To Spend Few Of Them</li>
+            {/*TODO: i should use a box here*/}
+            <Paragraph size="large">Manage Your Daily Tasks With No Strees</Paragraph>
+            <Paragraph size="large">Copy Whatever You Want In Your Personal Clipboard</Paragraph>
+            <Paragraph size="large">Calculate Very Complex Sum and Convert Your Huge Amount Of Bitcoin</Paragraph>
+            <Paragraph size="large">Manage Your Money Avoiding To Spend Few Of Them</Paragraph>
           </ul>
-        </div>
+        </Box>
       </Box>
+      {/** TODO: on smaller screen this image should not be rendered */}
       <Box direction="row" margin="medium">
         <Image fit="contain" src="https://joplinapp.org/images/AllClients.jpg" />
       </Box>
+      <Footer />
     </Box>
   </>
 );

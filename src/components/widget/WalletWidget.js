@@ -14,17 +14,19 @@ export const WalletWidget = props => (
       ]}
       aria-label="wallet"
     />
-    <Box direction="row" margin="small">
-      <Square color="status-ok" />
-      <Text margin={{ left: "small" }}>Earnings</Text>
-    </Box>
-    <Box direction="row" margin="small">
-      <Square color="status-error" />
-      <Text margin={{ left: "small" }}>Expanses</Text>
-    </Box>
-    <Box direction="row" margin="small">
-      <Square color="status-warning" />
-      <Text margin={{ left: "small" }}>Extras</Text>
+    <Box margin={{ top: "small", bottom: "small" }}>
+      <Box direction="row" margin="small">
+        <Square color="status-ok" />
+        <Text margin={{ left: "small" }}>Earnings: [60% - 1215,21$]</Text>
+      </Box>
+      <Box direction="row" margin="small">
+        <Square color="status-error" />
+        <Text margin={{ left: "small" }}>Expanses: [22% - 208,91$]</Text>
+      </Box>
+      <Box direction="row" margin="small">
+        <Square color="status-warning" />
+        <Text margin={{ left: "small" }}>Extras: [8% - 71,47$]</Text>
+      </Box>
     </Box>
   </Box>
 );

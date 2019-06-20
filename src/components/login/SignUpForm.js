@@ -12,7 +12,8 @@ export const SignUpForm = props => {
     event.preventDefault();
     try {
       const createdUser = await props.firebase.doCreateUserWithEmailAndPassword(email, password);
-      console.log(createdUser);
+      const savedUser = await props.firebase.user(createdUser.user.uid).set({ email: createdUser.user.email });
+      console.log(savedUser);
       setEmail("");
       setPassword("");
       setPasswordConfirmation("");
@@ -25,7 +26,7 @@ export const SignUpForm = props => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      <FormField name="name" label="Name" value={email} onChange={event => setEmail(event.target.value)} />
+      <FormField name="name" label="Email" value={email} onChange={event => setEmail(event.target.value)} />
       <FormField
         name="password"
         label="Password"

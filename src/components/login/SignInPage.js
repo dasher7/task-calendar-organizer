@@ -9,6 +9,8 @@ export const SingInPage = ({ show }) => {
   return <Layer margin="medium">{show && <SignInFormWrapper />}</Layer>;
 };
 
+//TODO: refactor the way componenet are wrapped via HOC
+
 const SignInFormWrapper = compose(
   withRouter,
   withFirebase
