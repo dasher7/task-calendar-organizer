@@ -8,7 +8,6 @@ export const model = {
   //POSSIBLE STATES
   tasks: [],
   authUser: [],
-  test: [],
 
   //ACTION
 

@@ -41,8 +41,8 @@ export const Header = props => {
           <Link to={ROUTES.LANDING}>
             <Tasks size="large" color="black" />
           </Link>
-          <Heading level={props.size === "medium" ? "1" : "4"} style={{ margin: "2rem" }}>
-            ToDo YourSelf
+          <Heading level={props.size === "small" ? "4" : "2"} style={{ margin: "2rem" }}>
+            Simplify Me
           </Heading>
         </Box>
         <Box direction="row" align="center">
@@ -56,7 +56,7 @@ export const Header = props => {
       {/* TODO: I can move all of the things into its seperate component
           HANDLING SIGN IN FORM */}
       {showModal && (
-        <Layer position="center" responsive={false}>
+        <Layer position="center" responsive={false} onClickOutside={() => setShowModal(false)}>
           <Box margin="medium" wrap={true}>
             <Form onSubmit={handleOnSubmit}>
               <FormField
