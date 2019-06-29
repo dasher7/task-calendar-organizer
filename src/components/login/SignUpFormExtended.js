@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { Button, Box, Form, FormField, Text } from "grommet";
-import * as ROUTES from "../../utils/routes";
-import { withFirebase } from "../../firebase/context";
-import { withRouter } from "react-router-dom";
+import { Box, Button, Form, FormField, Text, Select } from "grommet";
 import { compose } from "recompose";
+import { withRouter } from "react-router-dom";
+import { withFirebase } from "../../firebase/context";
+import * as ROUTES from "../../utils/routes";
 
-export const SignUpForm = props => {
+const SignUpFormExtended = props => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -15,21 +19,27 @@ export const SignUpForm = props => {
 
   const onSubmitHandler = async event => {
     event.preventDefault();
+    const user = {
+      name: name,
+      surname: surname,
+      dateOfBirth: ` ${day} / ${month} / ${year} `,
+      profilePicture: profilePicture,
+      email: email
+    };
     try {
-      const user = {
-        name: name,
-        surname: surname,
-        email: email
-      };
-      const createdUser = await props.firebase.doCreateUserWithEmailAndPassword(email, password);
-      // eslint-disable-next-line no-unused-vars
-      const savedUser = await props.firebase.user(createdUser.user.uid).set(user);
+      const singedUser = await props.firebase.doCreateUserWithEmailAndPassword(email, password);
+      const savedUser = await props.firebase.user(singedUser.user.uid).set(user);
+      setName("");
+      setSurname("");
+      setDay("");
+      setMonth("");
+      setYear("");
       setEmail("");
       setPassword("");
       setPasswordConfirmation("");
-      if (createdUser) props.history.push(ROUTES.HOME);
+      if (singedUser) props.history.push(ROUTES.HOME);
     } catch (error) {
-      setError(error.message);
+      setError(error);
     }
   };
 
@@ -37,6 +47,11 @@ export const SignUpForm = props => {
     <Form onSubmit={onSubmitHandler}>
       <FormField name="name" label="Name" value={name} onChange={event => setName(event.target.value)} />
       <FormField name="surname" label="Surname" value={surname} onChange={event => setSurname(event.target.value)} />
+      <FormField label="Date of birth">
+        <Select placeholder="day" options={["01", "02", "03", "04", "05"]} />
+        <Select placeholder="month" options={["01", "02", "03", "04", "05"]} />
+        <Select placeholder="year" options={["01", "02", "03", "04", "05"]} />
+      </FormField>
       <FormField name="email" label="Email" value={email} onChange={event => setEmail(event.target.value)} />
       <FormField
         name="password"
@@ -62,9 +77,9 @@ export const SignUpForm = props => {
   );
 };
 
-export const SignUpFormWrapped = compose(
+export const SignUpFormExtendedWrapped = compose(
   withRouter,
   withFirebase
-)(SignUpForm);
+)(SignUpFormExtended);
 
-export default SignUpForm;
+export default SignUpFormExtended;

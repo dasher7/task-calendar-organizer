@@ -58,6 +58,8 @@ export const Header = props => {
       {showModal && (
         <Layer position="center" responsive={false} onClickOutside={() => setShowModal(false)}>
           <Box margin="medium" wrap={true}>
+            <Heading level="3">Welcome Back :)</Heading>
+
             <Form onSubmit={handleOnSubmit}>
               <FormField
                 name="email"
