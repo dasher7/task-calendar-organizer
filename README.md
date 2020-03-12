@@ -35,7 +35,7 @@ Feel free to clone the repo and enjoy the code.
 If you need any help, here are the steps:
 
 1. Git Clone
-  - git clone *link of this repo*
+  - git clone https://github.com/dasher7/task-calendar-organizer.git
 2. CD into the cloned Repo
   - cd *task-calendar-organizer*
 3. Download the dependecy
